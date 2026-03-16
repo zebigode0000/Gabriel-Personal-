@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Trainer LP</title>
+    <link rel="preload" href="audio.mp3" as="audio">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .tag-float {
+            /* No mobile a fonte é menor, no desktop ela escala */
+            font-size: clamp(9px, 1.1vw, 14px);
+            backdrop-filter: blur(8px);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-black/90">
+    <div id="notif-personal" class="fixed bottom-6 left-6 z-[100] bg-black/80 backdrop-blur-xl border border-green-500/30 p-4 rounded-xl flex items-center gap-4 shadow-[0_0_20px_rgba(0,0,0,0.5)] opacity-0 translate-y-10 pointer-events-none">
+    <div class="relative">
+        <div class="w-12 h-12 rounded-full border border-green-500 flex items-center justify-center bg-green-500/10">
+            <i id="notif-icon" class="fa-solid fa-user-check text-green-500"></i>
+        </div>
+        <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+    </div>
+    <div class="flex flex-col">
+        <p id="notif-main-text" class="text-white text-sm font-bold leading-tight"></p>
+        <p id="notif-time" class="text-green-500 text-[10px] font-black uppercase tracking-widest mt-1">Acabou de acontecer</p>
+    </div>
+</div>
+    <header class="relative w-full h-dvh overflow-hidden font-sans bg-black">
+        
+        <div class="absolute inset-0 bg-cover bg-no-repeat bg-center w-full h-full 
+                    bg-[url('imgs/bannerMobile.png')] lg:bg-[url('imgs/bannerBiSem.png')]">
+        </div>
+
+        <div>
+            <nav class="fixed w-full bg-black/80 backdrop-blur-md p-4 z-50 flex justify-end">
+                <a class="relative text-green-500 border border-green-500 p-1 px-2 hover:bg-green-500 hover:text-white font-bold tracking-widest transition-colors ease-in transition-duration-2 rounded " href="#">Fazer orçamento</a>
+            </nav>
+        </div>
+        <div class="absolute inset-0  lg:bg-transparent"></div>
+        <div class="absolute inset-0 w-full h-full pointer-events-none">
+            <strong class="hidden lg:flex tag-float absolute bg-white/10 text-white p-1 px-3 rounded-full 
+                top-[12%] right-[5%] lg:top-[15%] lg:right-[10%] animar">
+                Performance
+            </strong>
+            
+            <strong class="hidden lg:flex tag-float absolute bg-white/10 text-white p-1 px-3 rounded-full 
+                top-[40%] right-[35%] lg:top-[45%] lg:right-[45%] animar" >
+                Personalizado
+            </strong>
+
+            <strong class="hidden lg:flex tag-float absolute bg-white/10 text-white p-1 px-3 rounded-full 
+                top-[55%] right-[5%] lg:top-[45%] lg:right-[8%] animar">
+                Adaptável
+            </strong>
+
+            <strong class="hidden lg:flex tag-float absolute bg-white/10 text-white p-1 px-3 rounded-full 
+                bottom-[15%] left-[10%] lg:bottom-auto lg:top-[75%] lg:right-[40%] lg:left-auto animar">
+                Acompanhamento
+            </strong>
+        </div>
+
+        <div class="hidden lg:flex relative z-10 flex h-full items-end pb-12 px-6 lg:items-center lg:pb-0 lg:px-20">
+            <div class="max-w-xl text-white">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold animar" data-anim="esquerda">
+                    Treinamento especializado para quem busca <br> <span id="troca-texto" class="italic text-green-500" >autonomia.</span>
+                </h1>
+                <p class="mt-3 text-base md:text-lg text-gray-200 animar" data-anim="esquerda">
+                    Acompanhamento individualizado para resultados reais.
+                </p>
+                <div class="pt-10">
+                    <a href="#" class="mt-6 w-full lg:w-auto bg-green-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_15px_#00C950] animar" data-anim="esquerda">
+                    AGENDAR MINHA AVALIAÇÃO
+                </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+      <div class="py-10 border-white/5 overflow-hidden whitespace-nowrap italic text-gray-100 font-black text-4xl lg:text-6xl opacity-20">
+        <div class="marquee-content inline-block">
+            ESPECIALISTA • PERFORMANCE • TREINO AJUSTADO • CUIDADO • RESULTADO REAL • METODOLOGIA • LONGEVIDADE • 
+        </div>
+        <div class="marquee-content inline-block">
+            ESPECIALISTA • PERFORMANCE • TREINO AJUSTADO • CUIDADO • RESULTADO REAL • METODOLOGIA • LONGEVIDADE • 
+        </div>
+    </div>
+
+        <div class="flex flex-col lg:hidden relative z-10 justify-center items-center w-full pb-12 px-6 lg:pb-0 lg:px-20 text-center"> <div class="text-white flex flex-col items-center"> <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold animar" data-anim="subir">
+            Treinamento especializado para quem busca <br> <span id="troca-texto" class="italic text-green-500 mudar-palavra">autonomia.</span>
+        </h1>
+        <p class="mt-3 text-base md:text-lg text-gray-200 animar" data-anim="subir">
+            Acompanhamento individualizado para resultados reais.
+        </p>
+        <a href="#" class="mt-6 w-full lg:w-auto bg-green-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_15px_#00C950] animar" data-anim="subir">
+            AGENDAR MINHA AVALIAÇÃO
+        </a>
+    </div>
+</div>
+        <section>
+            <div class="grid pt-8 md:grid-cols-[400px_1fr] py-10">
+                <div class="relative flex justify-center items-center pt-4">
+                    <img class="border-2 border-green-500 rounded-full size-80 object-cover animar" src="imgs/imgSobre.jpg" alt="">
+                    
+                </div>
+                <div class="p-4 w-full flex flex-col items-start">
+                    <h1 class="text-gray-100 text-5xl font-extrabold pb-4 animar" data-anim="subir">Sobre mim</h1>
+                    <p class="text-gray-100 text-xl">
+                    Me chamo <span class="text-green-500 animar">Gabriel</span>, tenho 25 anos, sou graduado em Educação Física e pós-graduado em Psicomotricidade.
+                    <br>
+                    Sou formado desde 2022. Após a graduação, passei um período no <span class="text-green-500 animar">exterior</span>, onde adquiri um grande crescimento pessoal e profissional. Desde 2024, atuo de forma dedicada na área de personal trainer.
+                    <br><br>
+                    Atualmente trabalho com todas as faixas etárias, atendendo crianças, adolescentes, adultos e idosos, além de grupos especiais, sempre com treinos <span class="text-green-500 animar">personalizados</span> e <span class="text-green-500 animar">adaptados</span> aos objetivos e limites de cada aluno.
+                    Também tenho experiência no trabalho com crianças neurodivergentes, utilizando atividades que estimulam o desenvolvimento motor, a coordenação e a autonomia de forma <span class="text-green-500 animar">respeitosa</span> e <span class="text-green-500 animar">acolhedora</span>.
+
+                    Atuo em academias e a domicílio.
+<br><br>
+                    Sou praticante de atividade física e acredito no movimento como uma <span class="text-green-500 animar">ferramenta essencial</span> para promover <span class="text-green-500 animar">saúde</span>, <span class="text-green-500 animar">bem-estar</span> e <span class="text-green-500 animar">qualidade de vida</span>. Meu objetivo é ajudar cada aluno a evoluir no seu próprio ritmo, tornando a prática de exercícios algo consistente, seguro e prazeroso.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="pb-20 pt-10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-16 text-center">
+            <h2 class="pb-4 text-5xl font-black tracking-tighter text-gray-100 animar" data-anim="subir">Áreas de <span class="">Atuação</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto font-medium animar" data-anim="subir">Treinamento técnico e humano adaptado para diferentes fases e necessidades da vida.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="card-atuacao flex flex-col border border-white/10 p-6 rounded-3xl bg-zinc-900/40 backdrop-blur-xl group animar scale-90">
+                <div class="relative w-full mb-6">
+                    <div class="overflow-hidden rounded-2xl h-48">
+                        <img class="w-full h-full object-cover grayscale-[50%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" src="imgs/idoso.webp" alt="Melhor Idade">
+                    </div>
+                    <div class="absolute -bottom-4 right-6 size-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg  border-4 border-zinc-900">
+                        <i class="fa-solid fa-user-check text-white text-xl"></i>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-black text-green-500 uppercase tracking-tighter mb-4">Melhor idade</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Recupere a liberdade de caminhar e brincar com os netos sem medo de quedas. Foco em musculatura funcional para prevenir quedas e devolver confiança.
+                </p>
+
+                <ul class="space-y-3 mt-auto">
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Fortalecimento ósseo
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Equilíbrio e Coordenação
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Prevenção de acidentes
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-atuacao flex flex-col border border-white/10 p-6 rounded-3xl bg-zinc-900/40 backdrop-blur-xl group animar scale-110 m-4 md:scale-120 shadow-lg shadow-green-500/70">
+                <div class="relative w-full mb-6">
+                    <div class="overflow-hidden rounded-2xl h-48">
+                        <img class="w-full h-full object-cover grayscale-[50%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" src="imgs/be.jpg" alt="PCD">
+                    </div>
+                    <div class="absolute -bottom-4 right-6 size-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg  border-4 border-zinc-900">
+                        <i class="fa-solid fa-wheelchair text-white text-xl"></i>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-black text-green-500 uppercase tracking-tighter mb-4">crianças (neurodivergentes)</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Inclusão total através da psicomotricidade. Movimento sem limites. Um treino que respeita a individualidade e foca no que você PODE fazer.
+                </p>
+
+                <ul class="space-y-3 mt-auto">
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Estímulo Sensorial
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Autonomia Funcional
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Ambiente Lúdico
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-atuacao flex flex-col border border-white/10 p-6 rounded-3xl bg-zinc-900/40 backdrop-blur-xl group animar scale-90">
+                <div class="relative w-full mb-6">
+                    <div class="overflow-hidden rounded-2xl h-48">
+                        <img class="w-full h-full object-cover object-center grayscale-[50%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110" src="imgs/adolescente1.webp" alt="Adolescentes">
+                    </div>
+                    <div class="absolute -bottom-4 right-6 size-12 bg-green-500 rounded-2xl flex items-center justify-center shadow-lg border-4 border-zinc-900">
+                        <i class="fa-solid fa-user-graduate text-white text-xl"></i>
+                    </div>
+                </div>
+                
+                <h3 class="text-2xl font-black text-green-500 uppercase tracking-tighter mb-4">Adolescentes</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Corrija a postura 'do celular' e construa confiança na fase mais importante da vida.
+                </p>
+
+                <ul class="space-y-3 mt-auto">
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Correção de Cifose
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Técnica Segura de Treino
+                    </li>
+                    <li class="flex items-start gap-3 text-xs font-bold text-gray-200 uppercase tracking-wide group/item">
+                        <div class="mt-0.5 size-4 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 group-hover/item:bg-green-500 group-hover/item:text-black transition-colors">
+                            <svg class="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z"/></svg>
+                        </div>
+                        Foco e Disciplina
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="flex justify-center pt-10 text-center">
+                    <a href="#" class="mt-6 w-full lg:w-auto bg-green-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_15px_#00C950] animar" data-anim="esquerda">
+                    AGENDAR MINHA AVALIAÇÃO
+                </a>
+                </div>
+    </div>
+</section>
+<section id="especificacoes" class="py-20 text-white max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10 overflow-x-hidden">
+        <div class="spec-box p-8 backdrop-blur-md  rounded-3xl text-center bg-black/30 border-t border-green-500 animar" data-anim="direita">
+            <div class="flex justify-center items-center">
+              <span class="text-3xl font-black">+</span>
+              <h4 class="text-5xl font-black mb-2 counter" data-val="3">0</h4>
+            </div>
+            
+            <p class="text-nvidia text-xs font-bold tracking-widest uppercase">Anos de Experiencia</p>
+        </div>
+        <div class="spec-box p-8 backdrop-blur-md  rounded-3xl text-center bg-black/30 border-t border-green-500 animar" data-anim="direita">
+            <div class="flex justify-center items-center">
+              <span class="text-3xl font-black">+</span>
+              <h4 class="text-5xl font-black mb-2 counter" data-val="500">0</h4>
+              <span class="text-3xl font-black">Kg</span>
+            </div>
+            <p class="text-nvidia text-xs font-bold tracking-widest uppercase">de Gordura Eliminada</p>
+        </div>
+        <div class="spec-box p-8 backdrop-blur-md  rounded-3xl text-center bg-black/30 border-t border-green-500 animar" data-anim="direita">
+            <div class="flex justify-center items-center">
+              <span class="text-3xl font-black">+</span>
+              <h4 class="text-5xl font-black mb-2 counter" data-val="20">0</h4>
+            </div>
+            <p class="text-nvidia text-xs font-bold tracking-widest uppercase">Alunos</p>
+        </div>
+        <div class="spec-box p-8 backdrop-blur-md  rounded-3xl text-center bg-black/30 border-t border-green-500 animar" data-anim="direita">
+            <div class="flex justify-center items-center">
+              <span class="text-3xl font-black hidden">+</span>
+              <h4 class="text-5xl font-black mb-2 counter" data-val="100">0</h4>
+              <span class="text-3xl font-black">%</span>
+            </div>
+            <p class="text-nvidia text-xs font-bold tracking-widest uppercase">Treino Personalizado</p>
+        </div>
+    </section>
+<section class="bg-zinc-900 py-20 px-4 overflow-hidden">
+  <div class="max-w-6xl mx-auto ">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 ">
+      <div>
+        <span class="text-green-500 font-bold tracking-widest uppercase text-sm">Depoimentos</span>
+        <h2 class="text-4xl md:text-5xl font-black text-white mt-2">QUEM TREINA, <span class="text-green-500">VE RESULTADO.</span></h2>
+      </div>
+      
+      <div class="flex gap-4">
+        <button id="prevBtn" class="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center text-white hover:bg-green-500 hover:border-green-500 transition-all">
+          &#10094;
+        </button>
+        <button id="nextBtn" class="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center text-white hover:bg-green-500 hover:border-green-500 transition-all">
+          &#10095;
+        </button>
+      </div>
+    </div>
+
+    <div id="carousel" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth">
+      
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/1.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/2.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/gugo.webp" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/3.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/4.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/5.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+      <div class="min-w-[85%] md:min-w-[450px] snap-center bg-zinc-800 rounded-3xl overflow-hidden flex flex-col border border-zinc-700 h-full">
+        <div class="h-full overflow-hidden">
+          <img src="imgs/6.png" alt="Resultado Aluno" class="w-full h-full object-contain object-center">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+        <section class="relative  max-w-6xl mx-auto py-20 px-6 font-sans">
+            <div class="absolute inset-0 z-0 pointer-events-none">
+                <div class="absolute  bottom-40 -left-40 w-80 h-80 bg-green-500/10 rounded-full blur-[100px]"></div>
+            </div>
+            
+            <div class="flex flex-col text-center mb-20">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-center text-white mb-2 animar">Como Funciona a Consultoria</h2> 
+                <span class="text-gray-400 animar">Mais que um treino, uma consultoria completa no seu espaço seguro.</span>
+            </div>
+            
+        
+    <div class="relative z-10">
+        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-[2px] h-full bg-green-500/30"></div>
+        
+        <div class="lg:hidden absolute left-4 w-[2px] h-full bg-green-500/30"></div>
+
+        <div class="space-y-12 lg:space-y-0 lg:relative lg:h-[800px]">
+            
+      <div class="relative">
+          <div class="hidden lg:block absolute left-1/2 -translate-x-1/2 w-[2px] h-full bg-white/10"></div>
+    
+          <div id="neon-line" class="hidden lg:block absolute left-1/2 -translate-x-1/2 w-[2px] h-0 bg-green-500 shadow-cyan-500 z-0"></div>
+
+      </div>
+            <div class="relative flex lg:block items-start lg:absolute lg:top-[5%] lg:left-0 lg:w-[45%] z-10 animar">
+                <div class="ml-10 lg:ml-0 lg:text-right bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-green-500/50 hover:scale-102 transition-all duration-100 ease-in z-10">
+                    <span class="text-green-500 font-bold text-sm uppercase tracking-widest">Passo 01</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Avaliação Inicial</h3>
+                    <p class="text-gray-400 mt-3 text-sm leading-relaxed">Conversa para entender suas necessidades, histórico de saúde e limitações específicas.</p>
+                </div>
+                <div class="absolute left-4 lg:left-auto lg:-right-[calc(11.1%+8px)] top-8 lg:top-1/2 w-4 h-4 bg-green-500 rounded-full neon border-4 border-black z-10"></div>
+            </div>
+
+            <div class="relative flex lg:block items-start lg:absolute lg:top-[28%] lg:right-0 lg:w-[45%] animar">
+                <div class="ml-10 lg:ml-0 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-green-500/50 hover:scale-102 transition-all duration-100 ease-in z-10">
+                    <span class="text-green-500 font-bold text-sm uppercase tracking-widest">Passo 02</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Plano Adaptado</h3>
+                    <p class="text-gray-400 mt-3 text-sm leading-relaxed">Criação de um cronograma exclusivo para o seu perfil, seja para longevidade, postura ou inclusão.</p>
+                </div>
+                <div class="absolute left-4 lg:-left-[calc(11.1%+8px)] top-8 lg:top-1/2 w-4 h-4 bg-green-500 rounded-full neon border-4 border-black z-10"></div>
+            </div>
+
+            <div class="relative flex lg:block items-start lg:absolute lg:top-[52%] lg:left-0 lg:w-[45%] animar">
+                <div class="ml-10 lg:ml-0 lg:text-right bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-green-500/50 hover:scale-102 transition-all duration-100 ease-in">
+                    <span class="text-green-500 font-bold text-sm uppercase tracking-widest">Passo 03</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Acompanhamento</h3>
+                    <p class="text-gray-400 mt-3 text-sm leading-relaxed">Treino presencial ou online com foco total na correção técnica e segurança de cada movimento.</p>
+                </div>
+                <div class="absolute left-4 lg:left-auto lg:-right-[calc(11.1%+8px)] top-8 lg:top-1/2 w-4 h-4 bg-green-500 rounded-full neon border-4 border-black z-10"></div>
+            </div>
+
+            <div class="relative flex lg:block items-start lg:absolute lg:top-[75%] lg:right-0 lg:w-[45%] animar">
+                <div class="ml-10 lg:ml-0 bg-white/5 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:border-green-500/50 hover:scale-102 transition-all duration-100 ease-in">
+                    <span class="text-green-500 font-bold text-sm uppercase tracking-widest">Passo 04</span>
+                    <h3 class="text-xl font-bold text-white mt-1">Evolução Constante</h3>
+                    <p class="text-gray-400 mt-3 text-sm leading-relaxed">Reavaliações periódicas para ajustar o nível de desafio e celebrar cada conquista alcançada.</p>
+                </div>
+                <div class="absolute left-4 lg:-left-[calc(11.1%+8px)] top-8 lg:top-1/2 w-4 h-4 bg-green-500 rounded-full neon border-4 border-black z-10"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="py-20 px-6 bg-black/30">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+        <h2 class="text-4xl font-bold text-white animar" data-anim="subir">Essa consultoria é para você?</h2>
+        <p class="text-gray-400 mt-4 animar" data-anim="subir">Seja honesto com seus objetivos antes de darmos o próximo passo.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div class="bg-zinc-900/50 p-8 rounded-2xl border border-red-500/20 animar" data-anim="subir">
+            <h3 class="text-red-500 font-bold mb-6 text-xl">NÃO é para você se:</h3>
+            <ul class="space-y-4 text-gray-400">
+                <li>❌ Busca resultados sem esforço ou "atalhos".</li>
+                <li>❌ Não tem compromisso com horários e rotina.</li>
+                <li>❌ Prioriza preço acima de qualidade e saúde.</li>
+            </ul>
+        </div>
+
+        <div class="bg-zinc-900 p-8 rounded-2xl border border-green-500 shadow-[0_0_20px_#00C950] animar" data-anim="subir">
+            <h3 class="text-green-500 font-bold mb-6 text-xl">É para você se:</h3>
+            <ul class="space-y-4 text-white">
+                <li>✅ Quer parar de perder tempo na academia.</li>
+                <li>✅ Busca um método validado pela ciência.</li>
+                <li>✅ Está pronto para investir na sua melhor versão.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="flex justify-center pt-10">
+                    <a href="#" class="mt-6 w-full lg:w-auto bg-green-500 text-white font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform shadow-[0_0_15px_#00C950] animar" data-anim="esquerda">
+                    AGENDAR MINHA AVALIAÇÃO
+                </a>
+                </div>
+</section>
+
+<section class="bg-black/30 py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-green-500 font-bold tracking-widest uppercase text-sm mb-4 animar">Diferenciais da Consultoria</h2>
+      <h3 class="text-4xl md:text-5xl font-extrabold text-white mb-6 animar">
+        Treinamento especializado, <br class="hidden md:block"> onde você estiver.
+      </h3>
+      <p class="text-gray-400 max-w-2xl mx-auto text-lg animar">
+        Esqueça o trânsito de Guarulhos. Levamos a estrutura profissional até a sua casa ou condomínio para máxima segurança e conforto.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-green-500/50 transition-all duration-300 animar" data-anim="esquerda">
+        <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-500/30 transition-colors" >
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 text-white 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3 text-left">Atendimento Domiciliar</h4>
+        <p class="text-gray-400 text-sm leading-relaxed text-left">
+          Realizamos a avaliação inicial e todos os treinos diretamente na sua residência ou condomínio. Total privacidade e foco no aluno.
+        </p>
+      </div>
+
+      <div class="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-green-500/50 transition-all duration-300 animar" data-anim="esquerda">
+        <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-500/30 transition-colors">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3 text-left">Fuga do Trânsito</h4>
+        <p class="text-gray-400 text-sm leading-relaxed text-left">
+          Otimizamos seu tempo em Guarulhos. Sem deslocamentos estressantes para você ou sua família, adaptando a agenda à sua rotina.
+        </p>
+      </div>
+
+      <div class="group bg-white/5 border border-white/10 p-8 rounded-3xl hover:border-green-500/50 transition-all duration-300 animar" data-anim="esquerda">
+        <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-500/30 transition-colors">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 21.48l1.307-1.307a1 text-white 0 00-1.414-1.414L12 18.667l-2.893-2.893a1 1 0 00-1.414 1.414L9 18.48l1.307 1.307A1 text-white 0 0012 21.48z"></path></svg>
+        </div>
+        <h4 class="text-xl font-bold text-white mb-3 text-left">Suporte Técnico</h4>
+        <p class="text-gray-400 text-sm leading-relaxed text-left">
+          Correção técnica minuciosa para idosos, adolescentes e PCD. Segurança de academia profissional dentro do seu espaço seguro.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-black/30 py-24 px-6 relative overflow-hidden">
+  <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-green-500/10 rounded-full blur-[100px]"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-16">
+      <h3 class="text-4xl md:text-5xl font-extrabold text-white mb-6 animar">Dúvidas Frequentes</h3>
+      <p class="text-gray-400 max-w-xl mx-auto text-lg animar">
+        Encontre respostas rápidas sobre nossa consultoria especializada em Guarulhos e como levamos saúde até você.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+
+      <details name="consultoria-faq" class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:border-green-500/50 transition-all duration-300 animar" open>
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <h4 class="text-lg font-bold text-white group-open:text-green-500 transition-colors">
+            Onde você atende em Guarulhos?
+          </h4>
+          <span class="text-green-500 group-open:rotate-180 transition-transform duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </summary>
+        <div class="mt-6 text-gray-400 text-base leading-relaxed border-t border-white/10 pt-6">
+          Atendo em **toda a região de Guarulhos e arredores**. O grande diferencial da minha consultoria é levar o treinamento especializado diretamente para o conforto e segurança da sua casa ou para a estrutura do seu condomínio, eliminando o estresse do trânsito.
+        </div>
+      </details>
+
+      <details name="consultoria-faq" class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:border-green-500/50 transition-all duration-300 animar">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <h4 class="text-lg font-bold text-white group-open:text-green-500 transition-colors">
+            Eu preciso ter aparelhos de academia em casa?
+          </h4>
+          <span class="text-green-500 group-open:rotate-180 transition-transform duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </summary>
+        <div class="mt-6 text-gray-400 text-base leading-relaxed border-t border-white/10 pt-6">
+          **Não.** Grande parte do treinamento, especialmente o funcional, pode ser realizado apenas com o peso do corpo. Se necessário, eu levo equipamentos leves e versáteis (como elásticos, halteres pequenos, caneleiras) para complementar o treino. O foco é a adaptação total ao seu espaço e necessidades.
+        </div>
+      </details>
+
+      <details name="consultoria-faq" class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:border-green-500/50 transition-all duration-300 animar">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <h4 class="text-lg font-bold text-white group-open:text-green-500 transition-colors">
+            O treino é seguro para idosos com osteoporose ou dores articulares?
+          </h4>
+          <span class="text-green-500 group-open:rotate-180 transition-transform duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </summary>
+        <div class="mt-6 text-gray-400 text-base leading-relaxed border-t border-white/10 pt-6">
+          **Sim, é extremamente seguro.** O foco principal para a melhor idade é o fortalecimento funcional para prevenir quedas, melhorar o equilíbrio e devolver a autonomia nas atividades diárias. Cada exercício é cuidadosamente selecionado e adaptado, respeitando os limites e as condições de saúde de cada aluno, com supervisão constante.
+        </div>
+      </details>
+
+      <details name="consultoria-faq" class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:border-green-500/50 transition-all duration-300 animar">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <h4 class="text-lg font-bold text-white group-open:text-green-500 transition-colors">
+            A musculação pode prejudicar o crescimento do meu filho adolescente?
+          </h4>
+          <span class="text-green-500 group-open:rotate-180 transition-transform duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </summary>
+        <div class="mt-6 text-gray-400 text-base leading-relaxed border-t border-white/10 pt-6">
+          **Não, se realizada com a técnica e supervisão corretas.** O treinamento de força na adolescência, quando introduzido de forma segura e técnica, é benéfico para o desenvolvimento físico e ósseo. Nosso foco é a **correção postural** e o fortalecimento saudável, sempre respeitando a fase de crescimento.
+        </div>
+      </details>
+
+      <details name="consultoria-faq" class="group bg-white/5 border border-white/10 rounded-2xl p-6 open:border-green-500/50 transition-all duration-300 animar">
+        <summary class="flex items-center justify-between cursor-pointer list-none">
+          <h4 class="text-lg font-bold text-white group-open:text-green-500 transition-colors">
+            Você atende cadeirantes ou pessoas com mobilidade reduzida?
+          </h4>
+          <span class="text-green-500 group-open:rotate-180 transition-transform duration-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </span>
+        </summary>
+        <div class="mt-6 text-gray-400 text-base leading-relaxed border-t border-white/10 pt-6">
+          **Sim.** A inclusão é um pilar central do meu trabalho. Desenvolvo treinos totalmente adaptados, focando no desenvolvimento motor e cognitivo, ganho de força funcional e autonomia. O atendimento domiciliar oferece um ambiente seguro e acolhedor.
+        </div>
+      </details>
+
+    </div>
+
+    <div class="text-center mt-20 hidden md:block">
+      <a href="#" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-gray-100 font-extrabold px-5 py-3 rounded-full text-md transition-all duration-300 hover:scale-102 animar">
+        Ainda com dúvidas? Fale no WhatsApp
+      </a>
+    </div>
+
+  </div>
+  <section class="md:hidden w-full p-4">
+            <div class="text-white text-center pt-5 w-full">
+                <h1 class="text-4xl font-bold text-gray-100">
+                    Treino sob <span class="text-green-500">medida</span> <br> para você.
+                </h1>
+                <p class="mt-3 text-normal  text-gray-100">
+                    Acompanhamento individualizado para resultados reais.
+                </p>
+                <button class="mt-6 w-full text-green-500 bg-black/30 text-white border border-green-500 font-bold py-3 px-10 rounded-full hover:scale-105 transition-transform ">
+                    QUERO COMEÇAR
+                </button>
+            </div>
+        </section>
+</section>
+
+<footer class=" bg-[#111111] py-12 px-6 border-t border-white/10">
+  <div class="max-w-3xl mx-auto text-center">
+    
+    <p class="text-gray-400 text-sm font-medium mb-4">
+      © 2024 Gabriel André Guarulhos. Todos os direitos reservados.
+    </p>
+
+    <p class="text-gray-500 text-xs leading-relaxed max-w-2xl mx-auto italic">
+      <span class="text-gray-400 font-bold not-italic uppercase tracking-widest mr-1">Diretrizes:</span> 
+      As informações contidas neste site são para fins educativos. A prática de exercícios deve ser precedida de avaliação médica. O acompanhamento profissional é indispensável para garantir a segurança do aluno.
+    </p>
+
+  </div>
+</footer>
+    </main>
+
+    <style>
+  /* Esconde a barra de scroll para um visual limpo */
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script>
+        // Animação suave para as tags não ficarem estáticas
+        gsap.to(".tag-float", {
+            y: "10px",
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 0.3
+        });
+
+        gsap.to(".marquee-content", { xPercent: -100, repeat: -1, duration: 30, ease: "none" });
+    </script>
+    <script>
+        // Certifique-se de ter carregado o GSAP e o ScrollTrigger
+gsap.registerPlugin(ScrollTrigger);
+
+// Animação da Linha Neon
+gsap.to("#neon-line", {
+    height: "100%", // Faz a linha crescer até o final
+    ease: "none",
+    scrollTrigger: {
+        trigger: ".relative", // O container da sua timeline
+        start: "top 60%",     // Começa quando o topo da timeline chega a 60% da tela
+        end: "bottom 80%",    // Termina quando o final da timeline chega a 80% da tela
+        scrub: true           // Sincroniza o progresso com o movimento do scroll
+    }
+});
+
+// Opcional: Fazer os pontos "acenderem" quando a linha passar por eles
+gsap.utils.toArray(".neon").forEach(point => {
+    gsap.to(point, {
+        backgroundColor: "#22c55e", // Cor verde neon
+        boxShadow: "0 0 20px rgba(34,197,94,1)",
+        scrollTrigger: {
+            trigger: point,
+            start: "top 70%",
+            toggleActions: "play reverse play reverse"
+        }
+    });
+});
+
+document.querySelectorAll('.counter').forEach(count => {
+            const target = +count.getAttribute('data-val');
+            ScrollTrigger.create({
+                trigger: count,
+                start: "top 90%",
+                onEnter: () => {
+                    gsap.to(count, { innerText: target, duration: 2, snap: { innerText: 1 }, ease: "power1.out" });
+                }
+            });
+        });
+    </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elementos = document.querySelectorAll('.animar');
+
+    // 1. FORÇAR ESTADO INICIAL (Evita que o item apareça antes da hora)
+    elementos.forEach((el) => {
+        const tipo = el.dataset.anim;
+        let x = "0", y = "0";
+        
+        if (tipo === 'esquerda') x = "-100px";
+        else if (tipo === 'direita') x = "100px";
+        else if (tipo === 'subir') y = "100px";
+
+        el.style.opacity = "0";
+        el.style.transform = `translate(${x}, ${y})`;
+        el.style.transition = "none"; // Remove transição para o set inicial
+    });
+
+    const observerOptions = {
+        root: null,
+        threshold: 0.5, // Dispara assim que uma pontinha aparece
+        rootMargin: "0px 0px -50px 0px" // Antecipa um pouco a animação
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        // Filtramos apenas os que estão entrando na tela agora
+        const entrando = entries.filter(e => e.isIntersecting);
+
+        entrando.forEach((entry, index) => {
+            const el = entry.target;
+
+            // EFEITO CASCATA (setTimeout baseado no index dos que aparecem juntos)
+            setTimeout(() => {
+                el.style.transition = "all 1s cubic-bezier(0.25, 1, 0.5, 1)";
+                el.style.opacity = "1";
+                el.style.transform = "translate(0, 0)";
+            }, index * 200); // 200ms entre um e outro
+
+            observer.unobserve(el); // Anima apenas uma vez
+        });
+    }, observerOptions);
+
+    elementos.forEach(el => observer.observe(el));
+});
+        // Dica: Se quiser usar o .from(), o seu CSS deveria estar com opacity: 1.
+    </script>
+    <script>
+  const carousel = document.getElementById('carousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // Define quanto o carrossel deve rolar a cada clique
+  const scrollAmount = 350; 
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+</script>
+<script>
+    // Garante que o script só rode após o HTML carregar
+    window.addEventListener('load', () => {
+        const palavras = ["autonomia", "saúde", "performance"];
+        let index = 0;
+        
+        // Seleciona todos os elementos (mobile e desktop)
+        const alvos = document.querySelectorAll(".mudar-palavra");
+
+        function trocarPalavra() {
+            gsap.to(alvos, {
+                duration: 0.5,
+                y: -15,
+                opacity: 0,
+                stagger: 0, // Anima todos ao mesmo tempo
+                onComplete: () => {
+                    index = (index + 1) % palavras.length;
+                    
+                    alvos.forEach(el => {
+                        el.textContent = palavras[index];
+                    });
+                    
+                    gsap.set(alvos, { y: 15 });
+                    
+                    gsap.to(alvos, {
+                        duration: 0.5,
+                        y: 0,
+                        opacity: 1,
+                        ease: "power2.out"
+                    });
+                }
+            });
+        }
+
+        setInterval(trocarPalavra, 3000);
+    });
+</script>
+<script>
+    const palavras = ["autonomia", "saúde", "performance"];
+    let index = 0;
+    const textoElemento = document.querySelector("#troca-texto");
+
+    function trocarPalavra() {
+        // 1. Anima a saída da palavra atual
+        gsap.to(textoElemento, {
+            duration: 0.5,
+            y: -20,
+            opacity: 0,
+            onComplete: () => {
+                // 2. Muda o texto após a saída
+                index = (index + 1) % palavras.length;
+                textoElemento.textContent = palavras[index];
+                
+                // 3. Reseta a posição para baixo para a nova entrada
+                gsap.set(textoElemento, { y: 20 });
+                
+                // 4. Anima a entrada da nova palavra
+                gsap.to(textoElemento, {
+                    duration: 0.5,
+                    y: 0,
+                    opacity: 1,
+                    ease: "back.out(1.7)"
+                });
+            }
+        });
+    }
+
+    // Inicia o ciclo a cada 3 segundos
+    setInterval(trocarPalavra, 2000);
+</script>
+
+<script>
+    //pop up de mensagem no canto da tela
+    const somNotificacao = new Audio('audio.mp3');
+    somNotificacao.volume = 0.4;
+
+    // Lista de ações possíveis
+    const acoes = [
+        "acaba de iniciar a consultoria.",
+        "garantiu a uma vaga da semana!",
+        "agendou uma avaliação de psicomotricidade.",
+        "iniciou o protocolo de treino adaptado",
+        "confirmou treino via WhatsApp.",
+        "agendou uma análise de barreira no desenvolvimento.",
+    ];
+
+    // Lista de nomes para gerar variedade
+    const nomes = ["Ricardo", "Ana Paula", "Marcos", "Juliana", "Felipe", "Carla", "Bruno", "Beatriz", "Lucas", "Mariana", "Gustavo", "Fernanda"];
+    const sobrenomes = ["S.", "M.", "L.", "Oliveira", "Costa", "P.", "R.", "Almeida"];
+
+    let ultimaAcao = -1;
+    const box = document.querySelector("#notif-personal");
+    const txt = document.querySelector("#notif-main-text");
+
+    function gerarMensagemAleatoria() {
+        // Escolhe uma ação que não seja a mesma da última vez
+        let indexAcao;
+        do {
+            indexAcao = Math.floor(Math.random() * acoes.length);
+        } while (indexAcao === ultimaAcao);
+        ultimaAcao = indexAcao;
+
+        // Sorteia Nome e Sobrenome
+        const nome = nomes[Math.floor(Math.random() * nomes.length)];
+        const sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+        
+        return `${nome} ${sobrenome} ${acoes[indexAcao]}`;
+    }
+
+    function dispararNotificacao() {
+        txt.textContent = gerarMensagemAleatoria();
+
+        const tl = gsap.timeline();
+
+        tl.to(box, {
+            y: 0, opacity: 1, duration: 0.7, ease: "back.out(1.5)",
+            onStart: () => {
+                somNotificacao.currentTime = 0;
+                somNotificacao.play().catch(() => {});
+            }
+        })
+        .to(box, {
+            y: 20, opacity: 0, duration: 0.7, ease: "power2.in", delay: 5,
+            onComplete: () => {
+                // Tempo realista entre 15 e 40 segundos
+                const proximoTempo = Math.floor(Math.random() * (40000 - 15000 + 1)) + 15000;
+                setTimeout(dispararNotificacao, proximoTempo);
+            }
+        });
+    }
+
+    window.addEventListener('load', () => {
+        // Primeira vez aparece rápido (3 seg) para validar o site
+        setTimeout(dispararNotificacao, 3000); 
+    });
+</script>
+</body>
+</html>
